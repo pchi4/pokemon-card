@@ -13,7 +13,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve oi
+npm run serve
 ```
 ### To run the fake-backend install
 
