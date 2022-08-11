@@ -2,7 +2,12 @@
 
 ## I made this project in order to improve my knowledge with vue.
 
-![image](https://user-images.githubusercontent.com/84159325/183957973-486d5f6e-98d0-47f4-9377-1fd0af3e6662.png) 
+![image](https://user-images.githubusercontent.com/84159325/184212828-9371c65d-d95a-42a4-b772-598ee374ea5f.png)
+
+## When searching the pokemon, a fake maps will be generated
+
+![image](https://user-images.githubusercontent.com/84159325/184212688-7d5bb0d0-2ff0-4012-a3b8-3f1eaf56c041.png)
+
 
 ## A simple query in the api https://pokeapi.co/docs/v2 
 
