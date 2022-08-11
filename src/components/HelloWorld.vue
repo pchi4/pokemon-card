@@ -1,4 +1,8 @@
 <template>
+  <div>
+      <div>
+    <NavComponent></NavComponent>
+  </div>
   <div class="hello container">
     <div class="titulo row">
       <div class="col-12">
@@ -32,13 +36,20 @@
             <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
           </select>
       </div>
-    </div>
+    </div> <br> <br>
+    <div class="container">
+      <RoadMap :url="url"></RoadMap>
+    </div> <br> <br>
+  </div>
+
   </div>
 </template>
 
 <script>
 import Pokedex from 'pokedex-promise-v2';
 import Swal from 'sweetalert2'
+import RoadMap from './RoadMap.vue';
+import NavComponent from './NavComponent';
 
 const options ={
     protocol: 'https',
@@ -50,6 +61,10 @@ const options ={
 
 export default {
   name: 'HelloWorld',
+  components:{
+    RoadMap,
+    NavComponent,
+},
   props: {
     msg: String
   },
@@ -58,9 +73,9 @@ export default {
       pokemon:"",
       pokemons: null,
       selected:'',
-      url: '',
+      url: undefined,
       name: '',
-      description:'',
+      description: undefined,
       hp: '',
     }
   },
@@ -85,7 +100,7 @@ export default {
             const pokemon = res;
             let sprites;
             ({sprites}= pokemon);
-        
+          
             this.name = res.name[0].toUpperCase() + res.name.substring(1);
             this.url = sprites.other.dream_world.front_default
           }else{
@@ -132,7 +147,6 @@ export default {
             console.log(pokemon);
           }
       });
-
       this.getPokemons(name)
     }
   },
