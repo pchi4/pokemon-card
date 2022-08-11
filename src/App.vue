@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
@@ -21,9 +21,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-image: url("../src/assets/e1a3bb132e6d7e7a0648301daae20d7a.jpg");
-  background-repeat: no-repeat;
-  height: 100vh;
+  /* background-image: url("../src/assets/e1a3bb132e6d7e7a0648301daae20d7a.jpg");
+  background-repeat: no-repeat; */
+  /* height: 100%; */
+  background-color: #363131;
   opacity:
 }
 </style>
