@@ -1,201 +1,6 @@
 <template>
     <div>
-        <div class="card" v-if="ability == 'fire'"  v-bind:style="bg.fogo" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'water'"  v-bind:style="bg.water" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'electric'"  v-bind:style="bg.eletrico" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'grass'"  v-bind:style="bg.planta" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'ghost'"  v-bind:style="bg.ghost" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'psychic'"  v-bind:style="bg.psico" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'dark'"  v-bind:style="bg.dark" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'normal'"  v-bind:style="bg.normal" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'bug'"  v-bind:style="bg.inseto" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'fairy'"  v-bind:style="bg.fada" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'rock'"  v-bind:style="bg.rock" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'fighting'"  v-bind:style="bg.lutador" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'ground'"  v-bind:style="bg.terra" >
-            <div class="header">
-                <div class="header-titulos">
-                    <h5 >{{name}}</h5>
-                    <span id="hp">HP: {{hp}}</span>
-                </div>
-            </div>
-            <div class="main">
-                <img style="width:70%;" :src="url" alt="" srcset="">
-            </div>
-            <div class="footer">
-                <div id="desc">Description</div>
-                <p id="info">{{description}}</p>
-            </div>
-        </div>
-        <div class="card" v-if="ability == 'ice'"  v-bind:style="bg.gelo" >
+        <div class="card" v-if="mudarCor()"  v-bind:style="mudarCor()" >
             <div class="header">
                 <div class="header-titulos">
                     <h5 >{{name}}</h5>
@@ -246,23 +51,29 @@
                 require: true,
             }
         },
-        data(){
-            return{
-                
-            }
-        },
         methods:{
-            teste(){
-                
-            }
-        },
-        computed:{  
-        //    teste(){
-        //     if(this.ability  == 'fire'){
-        //         return this.bg.normal
-        //     }
-        //    } 
+            mudarCor(){
 
+                this.habilidade = this.ability
+                this.backColor = this.bg
+
+                if(this.habilidade == 'fire') return this.backColor.fogo;
+                if(this.habilidade == 'eletrico') return this.backColor.eletrico;
+                if(this.habilidade == 'water') return this.backColor.water;
+                if(this.habilidade == 'ghost') return this.backColor.ghost;
+                if(this.habilidade == 'grass') return this.backColor.planta;
+                if(this.habilidade == 'psychic') return this.backColor.psico;
+                if(this.habilidade == 'normal') return this.backColor.normal;
+                if(this.habilidade == 'bug') return this.backColor.inseto;
+                if(this.habilidade == 'fairy') return this.backColor.fada;
+                if(this.habilidade == 'fighting') return this.backColor.lutador;
+                if(this.habilidade == 'ground') return this.backColor.terra;
+                if(this.habilidade == 'ice') return this.backColor.gelo;
+                if(this.habilidade == 'rock') return this.backColor.rock;
+                if(this.habilidade == 'steel') return this.backColor.steel;
+                if(this.habilidade == 'poison') return this.backColor.poison;
+
+            }
         }
     }
 
@@ -278,7 +89,6 @@
 
   #titulo{
     font-weight: bolder;
-    /* justify-content: center!important; */
   }
 
   #img{
@@ -335,9 +145,5 @@
     padding: 10px 0px;
     color: white;
     font-weight: bolder;
-  }
-
-  .input-group{
-    width: auto!important;
   }
 </style>
