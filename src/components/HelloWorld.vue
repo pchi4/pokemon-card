@@ -12,14 +12,16 @@
     <div>
       <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
     </div>
-    <div class="input-group mb-3 m-5">
+    <div class="input-group mb-3 mt-5">
       <input type="text" class="form-control" v-model="pokemon" placeholder="Enter a pokemon name" aria-label="Enter a pokemon name" aria-describedby="button-addon2">
       <button class="btn btn-secondary" type="button" @click.prevent="getPokemons()" id="button-addon2">Search</button>
     </div>
     <div>
         <div>
-          <h5 style="color:white; font-weight:bolder;">If you don't know a name, I recommend you select a few below</h5>
-          <select class="form-select" v-model="selected" @change="postPokemons()" aria-label="Default select example">
+          <div class="alert alert-primary mt-5" role="alert">
+            <span>If you don't know a name, I recommend you select a few below</span>
+          </div>
+          <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
             <option selected>Select one pokémon</option>
             <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
           </select>
@@ -29,7 +31,9 @@
       <RoadMap :url="url"></RoadMap>
     </div> <br> <br>
   </div>
-
+  <div>
+    <FooterComponent/>
+  </div>
   </div>
 </template>
 
@@ -39,6 +43,7 @@ import Swal from 'sweetalert2'
 import RoadMap from './RoadMap.vue';
 import NavComponent from './NavComponent';
 import CardComponente from './CardComponente';
+import FooterComponent from './FooterComponent';
 
 const options ={
     protocol: 'https',
@@ -53,7 +58,8 @@ export default {
   components:{
     RoadMap,
     NavComponent,
-    CardComponente
+    CardComponente,
+    FooterComponent,
 },
 props: {
   msg: String
@@ -110,6 +116,12 @@ data(){
         },
         rock:{
           backgroundColor: '#B8A038'
+        },
+        steel:{
+          backgroundColor: '#B8B8D0'
+        },
+        poison:{
+          backgroundColor: '#A040A0'
         }
     }
   }
