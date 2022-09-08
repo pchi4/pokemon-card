@@ -9,20 +9,8 @@
         <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
       </div>
     </div>
-    <div class="card">
-      <div class="header">
-        <div class="header-titulos">
-            <h5>{{name}}</h5>
-            <span id="hp">HP: {{hp}}</span>
-        </div>
-      </div>
-      <div class="main">
-        <img style="width:70%;" :src="url" alt="" srcset="">
-      </div>
-      <div class="footer">
-        <div id="desc">Description</div>
-        <p id="info">{{description}}</p>
-      </div>
+    <div>
+      <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
     </div>
     <div class="input-group mb-3 m-5">
       <input type="text" class="form-control" v-model="pokemon" placeholder="Enter a pokemon name" aria-label="Enter a pokemon name" aria-describedby="button-addon2">
@@ -35,7 +23,7 @@
             <option selected>Select one pokémon</option>
             <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
           </select>
-      </div>
+        </div>
     </div> <br> <br>
     <div class="container">
       <RoadMap :url="url"></RoadMap>
@@ -50,6 +38,7 @@ import Pokedex from 'pokedex-promise-v2';
 import Swal from 'sweetalert2'
 import RoadMap from './RoadMap.vue';
 import NavComponent from './NavComponent';
+import CardComponente from './CardComponente';
 
 const options ={
     protocol: 'https',
@@ -64,20 +53,66 @@ export default {
   components:{
     RoadMap,
     NavComponent,
+    CardComponente
 },
-  props: {
-    msg: String
-  },
-  data(){
-    return{
-      pokemon:"",
-      pokemons: null,
-      selected:'',
-      url: undefined,
-      name: '',
-      description: undefined,
-      hp: '',
+props: {
+  msg: String
+},
+data(){
+  return{
+    pokemon:"",
+    pokemons: null,
+    selected:'',
+    url: undefined,
+    name: '',
+    description: undefined,
+    hp: '',
+    ability: 'undefined',
+    bg:{
+        fogo: {
+          backgroundColor: '#F08030',
+        },
+        eletrico:{
+          backgroundColor: '#F8D030'
+        },
+        water:{
+          backgroundColor: '#6890F0'
+        },
+        ghost:{
+          backgroundColor: '#705898'
+        },
+        planta:{
+          backgroundColor: '#78C850'
+        },
+        psico:{
+          backgroundColor: '#F85888'
+        },
+        normal:{
+          backgroundColor: '#A8A878'
+        },
+        inseto:{
+          backgroundColor: '#A8B820'
+        },
+        fada: {
+          backgroundColor: '#EE99AC'
+        },
+        lutador:{
+          backgroundColor: '#F08030'
+        },
+        terra:{
+          backgroundColor: '#E0C068'
+        },
+        gelo:{
+          backgroundColor: '#98D8D8'
+        },
+        dark:{
+          backgroundColor: '#705848'
+        },
+        rock:{
+          backgroundColor: '#B8A038'
+        }
     }
+  }
   },
   methods:{
     getPokemons(name){
@@ -99,8 +134,15 @@ export default {
           if(!erro){
             const pokemon = res;
             let sprites;
-            ({sprites}= pokemon);
+            let types;
+
+            ({sprites, types} = pokemon);
+
+            
+            var typeAbility = types[0].type.name
+            this.ability = typeAbility
           
+
             this.name = res.name[0].toUpperCase() + res.name.substring(1);
             this.url = sprites.other.dream_world.front_default
           }else{
