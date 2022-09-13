@@ -1,39 +1,40 @@
 <template>
   <div>
+    <div>
+      <NavComponent></NavComponent>
+    </div>
+    <div class="hello container">
+      <div class="titulo row">
+        <div class="col-12">
+          <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
+        </div>
+      </div>
       <div>
-    <NavComponent></NavComponent>
-  </div>
-  <div class="hello container">
-    <div class="titulo row">
-      <div class="col-12">
-        <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
+        <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
+      </div>
+      <div class="input-group mb-3 mt-5">
+        <input type="text" class="form-control" v-model="pokemon" placeholder="Enter a pokemon name" aria-label="Enter a pokemon name" aria-describedby="button-addon2">
+        <button class="btn btn-secondary" type="button" @click.prevent="getPokemons()" id="button-addon2">Search</button>
+      </div>
+      <div>
+        <div class="alert alert-primary mt-5" role="alert">
+          <span>If you don't know a name, I recommend you select a few below</span>
+        </div>
+        <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
+          <option selected>Select one pokémon</option>
+          <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
+        </select>
+      </div>
+      <div class="container mb-5">
+        <TypePokemonCards/>
+      </div>
+      <div class="container">
+        <RoadMap :url="url"></RoadMap>
       </div>
     </div>
     <div>
-      <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
+      <FooterComponent/>
     </div>
-    <div class="input-group mb-3 mt-5">
-      <input type="text" class="form-control" v-model="pokemon" placeholder="Enter a pokemon name" aria-label="Enter a pokemon name" aria-describedby="button-addon2">
-      <button class="btn btn-secondary" type="button" @click.prevent="getPokemons()" id="button-addon2">Search</button>
-    </div>
-    <div>
-        <div>
-          <div class="alert alert-primary mt-5" role="alert">
-            <span>If you don't know a name, I recommend you select a few below</span>
-          </div>
-          <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
-            <option selected>Select one pokémon</option>
-            <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
-          </select>
-        </div>
-    </div> <br> <br>
-    <div class="container">
-      <RoadMap :url="url"></RoadMap>
-    </div> <br> <br>
-  </div>
-  <div>
-    <FooterComponent/>
-  </div>
   </div>
 </template>
 
@@ -44,6 +45,7 @@ import RoadMap from './RoadMap.vue';
 import NavComponent from './NavComponent';
 import CardComponente from './CardComponente';
 import FooterComponent from './FooterComponent';
+import TypePokemonCards from  './TypePokemonCards';
 
 const options ={
     protocol: 'https',
@@ -60,6 +62,7 @@ export default {
     NavComponent,
     CardComponente,
     FooterComponent,
+    TypePokemonCards,
 },
 props: {
   msg: String
@@ -68,62 +71,11 @@ data(){
   return{
     pokemon:"",
     pokemons: null,
-    selected:'',
     url: undefined,
     name: '',
     description: undefined,
     hp: '',
     ability: 'undefined',
-    bg:{
-        fogo: {
-          backgroundColor: '#F08030',
-        },
-        eletrico:{
-          backgroundColor: '#F8D030'
-        },
-        water:{
-          backgroundColor: '#6890F0'
-        },
-        ghost:{
-          backgroundColor: '#705898'
-        },
-        planta:{
-          backgroundColor: '#78C850'
-        },
-        psico:{
-          backgroundColor: '#F85888'
-        },
-        normal:{
-          backgroundColor: '#A8A878'
-        },
-        inseto:{
-          backgroundColor: '#A8B820'
-        },
-        fada: {
-          backgroundColor: '#EE99AC'
-        },
-        lutador:{
-          backgroundColor: '#F08030'
-        },
-        terra:{
-          backgroundColor: '#E0C068'
-        },
-        gelo:{
-          backgroundColor: '#98D8D8'
-        },
-        dark:{
-          backgroundColor: '#705848'
-        },
-        rock:{
-          backgroundColor: '#B8A038'
-        },
-        steel:{
-          backgroundColor: '#B8B8D0'
-        },
-        poison:{
-          backgroundColor: '#A040A0'
-        }
-    }
   }
   },
   methods:{
@@ -191,6 +143,7 @@ data(){
       const data  = await req.json();
       this.pokemons = data;  
     },
+
     postPokemons(){
       var name = this.selected
       const P = new Pokedex(options); 
@@ -202,7 +155,7 @@ data(){
           }
       });
       this.getPokemons(name)
-    }
+    },
   },
   mounted(){ 
     this.getListPokemon();
@@ -210,7 +163,6 @@ data(){
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .card{
     max-width: 300px;
@@ -220,7 +172,6 @@ data(){
 
   #titulo{
     font-weight: bolder;
-    /* justify-content: center!important; */
   }
 
   #img{

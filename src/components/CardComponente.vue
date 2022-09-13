@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card" v-if="mudarCor()"  v-bind:style="mudarCor()" >
+        <div :class="['card', ability]" v-if="ability == ability" >
             <div class="header">
                 <div class="header-titulos">
                     <h5 >{{name}}</h5>
@@ -26,10 +26,6 @@
                 type: null,
                 require: true,
             },
-            bg:{
-                type: null,
-                require: true,
-            },
             ability:{ 
                 type: null,
                 require: true, 
@@ -52,28 +48,7 @@
             }
         },
         methods:{
-            mudarCor(){
-
-                this.habilidade = this.ability
-                this.backColor = this.bg
-
-                if(this.habilidade == 'fire') return this.backColor.fogo;
-                if(this.habilidade == 'eletrico') return this.backColor.eletrico;
-                if(this.habilidade == 'water') return this.backColor.water;
-                if(this.habilidade == 'ghost') return this.backColor.ghost;
-                if(this.habilidade == 'grass') return this.backColor.planta;
-                if(this.habilidade == 'psychic') return this.backColor.psico;
-                if(this.habilidade == 'normal') return this.backColor.normal;
-                if(this.habilidade == 'bug') return this.backColor.inseto;
-                if(this.habilidade == 'fairy') return this.backColor.fada;
-                if(this.habilidade == 'fighting') return this.backColor.lutador;
-                if(this.habilidade == 'ground') return this.backColor.terra;
-                if(this.habilidade == 'ice') return this.backColor.gelo;
-                if(this.habilidade == 'rock') return this.backColor.rock;
-                if(this.habilidade == 'steel') return this.backColor.steel;
-                if(this.habilidade == 'poison') return this.backColor.poison;
-
-            }
+           
         }
     }
 
@@ -146,4 +121,71 @@
     color: white;
     font-weight: bolder;
   }
+.fire{
+    background-color: #F08030;
+}
+
+.electric{
+    background-color: #F8D030;
+}
+
+.water {
+    background-color: #6890F0;
+}
+
+.ghost {
+    background-color: #705898;
+}
+
+.grass {
+    background-color: #78C850;
+}
+
+.psychic {
+    background-color: #F85888;
+}
+
+.normal {
+    background-color: #A8A878;
+}
+
+.bug {
+    background-color: #A8B820;
+}
+
+.fairy {
+    background-color: #EE99AC;
+}
+
+.fighting {
+    background-color: #F08030;
+}
+
+.ground {
+    background-color: #E0C068;
+}
+
+.ice {
+    background-color: #98D8D8;
+}
+
+.dark {
+    background-color: #705848;
+}
+
+.rock {
+    background-color: #B8A038;
+}
+
+.steel {
+    background-color: #B8B8D0;
+}
+
+.poison {
+    background-color: #A040A0;
+}
+
+.dragon{
+    background-color: #7038F8;
+}
 </style>
