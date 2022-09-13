@@ -868,5 +868,87 @@
     { "id": "melmetal", "url": "https://pokeapi.co/api/v2/pokemon/809/" },
     { "id": "grookey", "url": "https://pokeapi.co/api/v2/pokemon/810/" },
     { "id": "thwackey", "url": "https://pokeapi.co/api/v2/pokemon/811/" }
-  ]
+  ],
+  "type": [
+    {
+        "id": "normal",
+        "url": "https://pokeapi.co/api/v2/type/1/"
+    },
+    {
+        "id": "fighting",
+        "url": "https://pokeapi.co/api/v2/type/2/"
+    },
+    {
+        "id": "flying",
+        "url": "https://pokeapi.co/api/v2/type/3/"
+    },
+    {
+        "id": "poison",
+        "url": "https://pokeapi.co/api/v2/type/4/"
+    },
+    {
+        "id": "ground",
+        "url": "https://pokeapi.co/api/v2/type/5/"
+    },
+    {
+        "id": "rock",
+        "url": "https://pokeapi.co/api/v2/type/6/"
+    },
+    {
+        "id": "bug",
+        "url": "https://pokeapi.co/api/v2/type/7/"
+    },
+    {
+        "id": "ghost",
+        "url": "https://pokeapi.co/api/v2/type/8/"
+    },
+    {
+        "id": "steel",
+        "url": "https://pokeapi.co/api/v2/type/9/"
+    },
+    {
+        "id": "fire",
+        "url": "https://pokeapi.co/api/v2/type/10/"
+    },
+    {
+        "id": "water",
+        "url": "https://pokeapi.co/api/v2/type/11/"
+    },
+    {
+        "id": "grass",
+        "url": "https://pokeapi.co/api/v2/type/12/"
+    },
+    {
+        "id": "electric",
+        "url": "https://pokeapi.co/api/v2/type/13/"
+    },
+    {
+        "id": "psychic",
+        "url": "https://pokeapi.co/api/v2/type/14/"
+    },
+    {
+        "id": "ice",
+        "url": "https://pokeapi.co/api/v2/type/15/"
+    },
+    {
+        "id": "dragon",
+        "url": "https://pokeapi.co/api/v2/type/16/"
+    },
+    {
+        "id": "dark",
+        "url": "https://pokeapi.co/api/v2/type/17/"
+    },
+    {
+        "id": "fairy",
+        "url": "https://pokeapi.co/api/v2/type/18/"
+    },
+    {
+        "id": "unknown",
+        "url": "https://pokeapi.co/api/v2/type/10001/"
+    },
+    {
+        "id": "shadow",
+        "url": "https://pokeapi.co/api/v2/type/10002/"
+    }
+]
 }
