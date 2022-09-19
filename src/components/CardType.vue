@@ -18,7 +18,7 @@
 
 <script>
 
-    export default {
+export default {
     name: "CardType",
     props: {
         pokemons: {
@@ -34,7 +34,7 @@
 </script>
 
 <style scoped>
-        .card{
+    .card{
     max-width: 300px;
     background-color: rgb(226, 226, 61);
     margin: 0 auto!important;

@@ -7,6 +7,9 @@
           </select>
         </div>
         <div>
+          <LoadingComponent :class="['loadding', loadding]"  v-if="loadding == true"  />
+        </div>
+        <div v-show="isGetPokemonsTypes">
           <CardType :abilitys="abilitys" :pokemons="pokemons" />
         </div>
     </div> 
@@ -15,6 +18,7 @@
 <script>
 import Pokedex from 'pokedex-promise-v2';
 import CardType from './CardType';
+import LoadingComponent from './LoadingComponent';
 
 const options ={
     protocol: 'https',
@@ -28,6 +32,7 @@ export default {
     name: 'TypePokemonCards',
     components:{
       CardType,
+      LoadingComponent
     },
     data(){
       return {
@@ -39,6 +44,9 @@ export default {
         pokemons: undefined,
         namePoke: undefined,
         abilitys: undefined,
+        loadding: false,
+        isGetPokemonsTypes: false,
+        url: undefined,
       }
     },
     methods:{
@@ -51,12 +59,19 @@ export default {
         var typePokemon = this.selectedType
         const P = new Pokedex(options);
 
+        this.loadding = true
+
         P.getTypeByName(typePokemon, (res, erro)=>{
           if(!erro){
             const type = res
             let pokemon;
-
+            
             ({ pokemon } = type )
+
+            setTimeout(()=>{
+              this.loadding = false
+              this.isGetPokemonsTypes = true
+            },1000)
 
             var namePokemon = [];
 
@@ -71,6 +86,7 @@ export default {
                 const pokemon = res;
                 this.pokemons = pokemon
                 this.abilitys = pokemon.types.type[0].name
+                this.url = pokemon.sprites.other.dream_world.front_default
               }
             })
           }
@@ -83,3 +99,9 @@ export default {
 }
 
 </script>
+
+<style>
+  .loadding{
+    display: block;
+  }
+</style>

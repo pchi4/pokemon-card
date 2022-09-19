@@ -3,13 +3,13 @@
     <div>
       <NavComponent></NavComponent>
     </div>
-    <div class="hello container">
+    <div class="container">
       <div class="titulo row">
         <div class="col-12">
           <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
         </div>
       </div>
-      <div>
+      <div v-show="!isGetPokemons">
         <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
       </div>
       <div class="input-group mb-3 mt-5">
@@ -76,6 +76,7 @@ data(){
     description: undefined,
     hp: '',
     ability: 'undefined',
+    isGetPokemons: true,
   }
   },
   methods:{
@@ -85,11 +86,9 @@ data(){
       var namePokemon = this.pokemon.toLowerCase(); 
 
       function pegarOsNomes(nameSelected, nameInput){
-        if(nameSelected){
-          return name
-        }else if (nameInput){
-          return namePokemon
-        }
+        if (nameSelected) return name
+        if (nameInput) return namePokemon
+        
       }
 
       var retornaOsNomes = pegarOsNomes(name, namePokemon);
@@ -97,18 +96,16 @@ data(){
       P.getPokemonByName(retornaOsNomes, (res, erro)=>{
           if(!erro){
             const pokemon = res;
-            let sprites;
-            let types;
+            let sprites, types;
 
             ({sprites, types} = pokemon);
-
             
             var typeAbility = types[0].type.name
             this.ability = typeAbility
           
-
             this.name = res.name[0].toUpperCase() + res.name.substring(1);
             this.url = sprites.other.dream_world.front_default
+            this.isGetPokemons = false
           }else{
             Swal.fire({
               title:'Pokemon não encontrado!',
