@@ -54,7 +54,7 @@
             var lng = -3 + Math.random() * 6; 
 
             L.marker([lat, lng], {icon: L.icon(this.options)}).addTo(this.map)
-                .bindPopup('testando isso aqui')
+                .bindPopup('O pokemon se encontra nesta área.')
                 .openPopup();
         },
         watch:{
