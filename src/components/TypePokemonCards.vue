@@ -1,7 +1,7 @@
 <template>
       <div>
-        <div>
-          <select class="form-select mt-5" v-model="selectedType" @change="postTypePokemon()" aria-label="Default select example">
+        <div class="mb-3">
+          <select class="form-select mt-5" v-model="selectedType" @change="postTypePokemon()">
             <option selected>Select one pokémon</option>
             <option v-for="typeName in typeNames" :value="typeName.id" :key="typeName.id">{{typeName.id}}</option>
           </select>
@@ -25,7 +25,6 @@ const options ={
     hostName: 'pokeapi.co',
     versionPath:'/api/v2/',
     cacheLimit: 100 * 1000,
-    timeout: 5 * 1000
 };
 
 export default {
@@ -46,7 +45,6 @@ export default {
         abilitys: undefined,
         loadding: false,
         isGetPokemonsTypes: false,
-        url: undefined,
       }
     },
     methods:{
@@ -71,22 +69,22 @@ export default {
             setTimeout(()=>{
               this.loadding = false
               this.isGetPokemonsTypes = true
-            },1000)
+            },8000)
 
-            var namePokemon = [];
+            var namePokemons = [];
 
             for(let e of pokemon ){
-              namePokemon.push(e.pokemon.name)
+              namePokemons.push(e.pokemon.name)
             }
 
-            this.namePoke = namePokemon;
+            this.namePoke = namePokemons;
 
-            P.getPokemonByName(namePokemon, (res, erro)=>{
+            P.getPokemonByName(namePokemons, (res, erro)=>{
               if(!erro){
                 const pokemon = res;
                 this.pokemons = pokemon
                 this.abilitys = pokemon.types.type[0].name
-                this.url = pokemon.sprites.other.dream_world.front_default
+                
               }
             })
           }

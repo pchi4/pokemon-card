@@ -22,7 +22,7 @@ export default {
     name: "CardType",
     props: {
         pokemons: {
-            type: String,
+            type: Array,
             require: false,
         },
         abilitys:{ 
