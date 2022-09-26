@@ -3,7 +3,7 @@
     <div>
       <NavComponent></NavComponent>
     </div>
-    <div class="container">
+    <div class="container" id="container-home">
       <div class="titulo row">
         <div class="col-12">
           <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
@@ -17,7 +17,7 @@
         <button class="btn btn-secondary" type="button" @click.prevent="getPokemons()" id="button-addon2">Search</button>
       </div>
       <div>
-        <div class="alert alert-primary mt-5" role="alert">
+        <div class="alert alert-dark mt-5" role="alert">
           <span>If you don't know a name, I recommend you select a few below</span>
         </div>
         <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
@@ -25,10 +25,10 @@
           <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
         </select>
       </div>
-      <div class="container mb-5">
+      <div class=" mb-5">
         <TypePokemonCards/>
       </div>
-      <div class="container">
+      <div class="py-3">
         <RoadMap :url="url"></RoadMap>
       </div>
     </div>
@@ -74,7 +74,7 @@ data(){
     url: undefined,
     name: '',
     description: undefined,
-    hp: '',
+    hp: undefined,
     ability: 'undefined',
     isGetPokemons: true,
   }
@@ -146,10 +146,10 @@ data(){
       const P = new Pokedex(options); 
 
       P.getPokemonByName(name, (res, erro)=>{
-          if(!erro){
-            const pokemon = res;
-            console.log(pokemon);
-          }
+        if(!erro){
+          const pokemon = res;
+          console.log(pokemon);
+        }
       });
       this.getPokemons(name)
     },
@@ -229,5 +229,12 @@ data(){
 
   .input-group{
     width: auto!important;
+  }
+
+  @media (min-width: 768px) { 
+    #container-home{
+      max-width: 800px;
+      margin: 0 auto;
+    }
   }
 </style>
