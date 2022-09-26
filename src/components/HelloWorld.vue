@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div>
-      <NavComponent></NavComponent>
-    </div>
+    <NavComponent></NavComponent>
     <div class="container" id="container-home">
       <div class="titulo row">
         <div class="col-12">
           <img  id="img" src="https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png" alt=""> 
         </div>
+      </div>
+      <div class="p-2">
+        <h1 class="text-white">Check your pokemon here!</h1>
       </div>
       <div v-show="!isGetPokemons">
         <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
@@ -29,12 +30,10 @@
         <TypePokemonCards/>
       </div>
       <div class="py-3">
-        <RoadMap :url="url"></RoadMap>
+        <RoadMap :url="url"  :description="description" ></RoadMap>
       </div>
     </div>
-    <div>
-      <FooterComponent/>
-    </div>
+    <FooterComponent/>
   </div>
 </template>
 
@@ -47,7 +46,7 @@ import CardComponente from './CardComponente';
 import FooterComponent from './FooterComponent';
 import TypePokemonCards from  './TypePokemonCards';
 
-const options ={
+const options = {
     protocol: 'https',
     hostName: 'pokeapi.co',
     versionPath:'/api/v2/',
@@ -140,17 +139,8 @@ data(){
       const data  = await req.json();
       this.pokemons = data;  
     },
-
     postPokemons(){
       var name = this.selected
-      const P = new Pokedex(options); 
-
-      P.getPokemonByName(name, (res, erro)=>{
-        if(!erro){
-          const pokemon = res;
-          console.log(pokemon);
-        }
-      });
       this.getPokemons(name)
     },
   },
