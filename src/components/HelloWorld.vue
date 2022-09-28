@@ -23,7 +23,7 @@
         </div>
         <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
           <option selected>Select one pokémon</option>
-          <option v-for="pokemon in pokemons" :value="pokemon.id" :key="pokemon.id" >{{pokemon.id}}</option>
+          <option v-for="pokemon in pokemons" :value="pokemon.name" :key="pokemon.name" >{{pokemon.name}}</option>
         </select>
       </div>
       <div class=" mb-5">
@@ -135,9 +135,9 @@ data(){
       });
     },
     async getListPokemon(){
-      const req = await fetch("http://localhost:3000/pokemons/");
+      const req = await fetch("http://pokeapi.co/api/v2/pokemon/?limit=811");
       const data  = await req.json();
-      this.pokemons = data;  
+      this.pokemons = data.results; 
     },
     postPokemons(){
       var name = this.selected

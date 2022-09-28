@@ -3,7 +3,7 @@
         <div class="mb-3">
           <select class="form-select mt-5" v-model="selectedType" @change="postTypePokemon()">
             <option selected>Select one pokémon</option>
-            <option v-for="typeName in typeNames" :value="typeName.id" :key="typeName.id">{{typeName.id}}</option>
+            <option v-for="typeName in typeNames" :value="typeName.name" :key="typeName.name">{{typeName.name}}</option>
           </select>
         </div>
         <div>
@@ -49,9 +49,9 @@ export default {
     },
     methods:{
       async getListTypePokemon(){
-        const req = await fetch("http://localhost:3000/type/");
+        const req = await fetch("https://pokeapi.co/api/v2/type/?limit=811");
         const dataList = await req.json();
-        this.typeNames = dataList;
+        this.typeNames = dataList.results;
       },  
       postTypePokemon(){
         var typePokemon = this.selectedType
