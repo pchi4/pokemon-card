@@ -2,7 +2,7 @@
     <div>
         <div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel fw-bolder">Selecione uma das opções abaixo</h5>
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel fw-bolder">Select one of the options below</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">

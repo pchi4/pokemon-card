@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="p-2">
-        <h1 class="text-white">Check your pokemon here!</h1>
+        <h1 class="text-white fw-bolder">Check your pokemon here!</h1>
       </div>
       <div v-show="!isGetPokemons">
         <CardComponente :name="name" :description="description" :url="url" :hp="hp" :bg="bg" :ability="ability" />
@@ -16,16 +16,19 @@
         <input type="text" class="form-control" v-model="pokemon" placeholder="Enter a pokemon name" aria-label="Enter a pokemon name" aria-describedby="button-addon2">
         <button class="btn btn-secondary" type="button" @click.prevent="getPokemons()" id="button-addon2">Search</button>
       </div>
-      <div>
+      <div class="py-5">
         <div class="alert alert-dark mt-5" role="alert">
           <span>If you don't know a name, I recommend you select a few below</span>
+        </div>
+        <div>
+          <img class="w-100" src="/pokemons-group.png" alt="pokemons group">
         </div>
         <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
           <option selected>Select one pokémon</option>
           <option v-for="pokemon in pokemons" :value="pokemon.name" :key="pokemon.name" >{{pokemon.name}}</option>
         </select>
       </div>
-      <div class="py-3">
+      <div class="py-3" v-show="!isGetPokemons">
         <RoadMap :url="url"  :description="description" ></RoadMap>
       </div>
     </div>
