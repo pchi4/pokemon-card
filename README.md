@@ -20,21 +20,6 @@ npm install
 ```
 npm run serve
 ```
-### To run the fake-backend install
-
-```
-npm install -g json-server
-```
-### And to run the uitlize server
-
-```
-npm start in server folder
-```
-
-### Change the server port to request the data
-
-![image](https://user-images.githubusercontent.com/84159325/183966451-25938877-cd83-46f5-aec1-c74c4418b3f5.png)
-
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
