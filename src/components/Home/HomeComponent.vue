@@ -23,8 +23,8 @@
         <div>
           <img class="w-100" src="/pokemons-group.png" alt="pokemons group">
         </div>
-        <select class="form-select mt-5" v-model="selected" @change="postPokemons()" aria-label="Default select example">
-          <option selected>Select one pokémon</option>
+        <select class="form-select mt-5" required @change="postPokemons()" aria-label="Default select example">
+          <option>Select one pokémon</option>
           <option v-for="pokemon in pokemons" :value="pokemon.name" :key="pokemon.name" >{{pokemon.name}}</option>
         </select>
       </div>
@@ -68,6 +68,7 @@ data(){
     hp: undefined,
     ability: 'undefined',
     isGetPokemons: true,
+    selecionado: 'Select one pokémon'
   }
   },
   methods:{

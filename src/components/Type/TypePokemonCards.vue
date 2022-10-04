@@ -12,8 +12,8 @@
         <img src="/pokemons.png" class="img-fluid" alt="ashe">
       </div>
       <div class="mb-3">
-        <select class="form-select mt-5" v-model="selectedType" @change="postTypePokemon()">
-          <option selected>Select one pokémon</option>
+        <select class="form-select mt-5" @change="postTypePokemon()">
+          <option>Select one type</option>
           <option v-for="typeName in typeNames" :value="typeName.name" :key="typeName.name">{{typeName.name}}</option>
         </select>
       </div>
@@ -48,7 +48,6 @@ export default {
       return {
         typeName: '',
         typeNames: null,
-        selectedType: '',
         pokemon: '',
         name: '',
         pokemons: undefined,
