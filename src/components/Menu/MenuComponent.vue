@@ -1,0 +1,28 @@
+<template>
+    <div>
+        <div class="offcanvas offcanvas-start bg-dark" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel fw-bolder">Selecione uma das opções abaixo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <nav>
+                    <span><router-link class="btn btn-primary w-100 fw-bolder m-2" to="/"><font-awesome-icon icon="fa-solid fa-house" /> Home </router-link></span>
+                    <span><router-link class="btn btn-primary w-100 fw-bolder m-2" to="/types"><font-awesome-icon icon="fa-solid fa-dragon" />  Types pokemons</router-link></span>
+                </nav>
+                <div>
+                    <img class="w-100 pt-5" src="/ashe.png" alt="ww">
+                </div>
+                <div>
+                    <h2 class="p-3 fst-italic fw-bolder">Pokemons</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'MenuComponent',
+    }
+</script>
