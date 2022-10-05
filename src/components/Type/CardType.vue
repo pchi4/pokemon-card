@@ -1,5 +1,5 @@
 <template>
-    <div class="row" id="teste">
+    <div class="row" id="group-pokemons">
         <div class="col-sm-6 p-4" v-for="item in pokemons" :key="item.id">
             <div :class="['card', item.types[0].type.name]" v-if="abilitys == ability" >
                 <div class="header">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="main">
-                    <img style="width:70%;" :src="item.sprites.other.dream_world.front_default" alt="" srcset="">
+                    <img class="w-75" :src="item.sprites.other.dream_world.front_default ? item.sprites.other.dream_world.front_default : item.sprites.other.home.front_default" alt="pokemons group" srcset="">
                 </div>
             </div>
         </div>
@@ -34,27 +34,27 @@ export default {
 </script>
 
 <style scoped>
-    .card{
+.card{
     max-width: 300px;
     background-color: rgb(226, 226, 61);
     margin: 0 auto!important;
-  }
+}
 
-  #titulo{
+#titulo{
     font-weight: bolder;
-  }
+}
 
-  #img{
+#img{
     width: 180px;
-  }
+}
 
-  .footer{
+.footer{
     background-color: rgba(255, 228, 196, 0.589);
     margin: 10px;
     border-radius: 0px 0px 10px 10px;
-  }
+}
 
-  .header-titulos{
+.header-titulos{
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -63,9 +63,9 @@ export default {
     color: white;
     font-weight: bolder;
     border-radius: 10px 10px 0px 0px;
-  }
+}
 
-  #hp{
+#hp{
     background-color: #323232;
     color: white;
     box-sizing: border-box;
@@ -73,9 +73,9 @@ export default {
     padding: 0px 10px;
     text-align: center;
     padding-top: 5px;
-  }
+}
 
-  #desc{
+#desc{
     background-color: #323232;
     width: 100%;
     padding: 10px;
@@ -83,22 +83,23 @@ export default {
     font-style: bolder;
     font-size: 18px;
     text-align: start;
-  }
+    }
 
-  #info{
+#info{
     text-align: justify;
     padding: 10px;
-  }
+    }
 
-  .main{
+.main{
     height: 200px;
-  }
+}
 
-  .titulo{
+.titulo{
     padding: 10px 0px;
     color: white;
     font-weight: bolder;
-  }
+}
+
 .fire{
     background-color: #F08030;
 }
@@ -167,7 +168,7 @@ export default {
     background-color: #7038F8;
 }
 
-#teste{
+#group-pokemons{
     overflow-y: scroll;
     overflow-x: hidden;
     height: 650px;

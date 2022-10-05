@@ -67,7 +67,7 @@
                     iconAnchor: [22, 94],
                     popupAnchor: [-3, -76],
             })}).addTo(this.map)
-                .bindPopup('testando isso aqui')
+                .bindPopup('O pokemon se encontra nesta área.')
                 .openPopup();
                 return 1
             }
