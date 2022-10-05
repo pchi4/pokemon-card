@@ -10,9 +10,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faBars, faDragon, faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faDragon, faHouse, faMusic } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faBars, faHouse, faDragon)
+library.add(faBars, faHouse, faDragon, faMusic)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
