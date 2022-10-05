@@ -11,10 +11,10 @@
                     <span><router-link class="btn btn-primary w-100 fw-bolder m-2" to="/types"><font-awesome-icon icon="fa-solid fa-dragon" />  Types pokemons</router-link></span>
                 </nav>
                 <div>
-                    <img class="w-100 pt-5" src="/ashe.png" alt="ww">
+                    <img class="w-75 pt-4" src="/pokemon-titulo.png" alt="pokemon titulo">
                 </div>
                 <div>
-                    <h2 class="p-3 fst-italic fw-bolder">Pokemons</h2>
+                    <img class="w-100 pt-3" src="/ashe.png" alt="ww">
                 </div>
             </div>
         </div>

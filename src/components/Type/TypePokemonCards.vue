@@ -6,13 +6,13 @@
         </div>
       </div>
       <div class="p-2">
-        <h1 class="text-white fw-bolder">Selected one type pokemons</h1>
+        <h1 class="fw-bolder">Selected one type pokemons</h1>
       </div>
       <div>
         <img src="/pokemons.png" class="img-fluid" alt="ashe">
       </div>
-      <div class="mb-3">
-        <select class="form-select mt-5" @change="postTypePokemon()">
+      <div class="my-5">
+        <select class="form-select mt-5" v-model="selectedType" @change="postTypePokemon()">
           <option>Select one type</option>
           <option v-for="typeName in typeNames" :value="typeName.name" :key="typeName.name">{{typeName.name}}</option>
         </select>
@@ -32,10 +32,10 @@ import CardType from './CardType.vue';
 import LoadingComponent from './LoadingComponent.vue';
 
 const options = {
-    protocol: 'https',
-    hostName: 'pokeapi.co',
-    versionPath:'/api/v2/',
-    cacheLimit: 100 * 1000,
+  protocol: 'https',
+  hostName: 'pokeapi.co',
+  versionPath:'/api/v2/',
+  cacheLimit: 100 * 1000,
 };
 
 export default {

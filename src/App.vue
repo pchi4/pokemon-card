@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavComponent/>
-      <router-view></router-view>
+    <router-view/>
     <FooterComponent/>
     <MenuComponent/>
   </div>
@@ -30,5 +30,12 @@ export default {
   text-align: center;
   background-color: #363131;
   color: white;
+}
+
+h1, h2, h3{
+  text-shadow: 2px 0 #0d6efd, -2px 0 #0d6efd, 0 2px #0d6efd, 0 -2px #0d6efd,
+               1px 1px #0d6efd, -1px -1px #0d6efd, 1px -1px #0d6efd, -1px 1px #0d6efd;
+  color: yellow !important;
+  font-family: monospace;
 }
 </style>
