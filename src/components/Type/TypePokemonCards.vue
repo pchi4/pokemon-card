@@ -46,6 +46,7 @@
 <script>
 import CardType from "./CardType.vue";
 import LoadingComponent from "./LoadingComponent.vue";
+import Swal from "sweetalert2";
 
 export default {
   name: "TypePokemonCards",
@@ -71,6 +72,15 @@ export default {
       const req = await fetch("https://pokeapi.co/api/v2/type/?limit=811");
       const dataList = await req.json();
       this.typeNames = dataList.results;
+
+      if (req.status == 404) {
+        Swal.fire({
+          title: "Ops!",
+          text: `${req.status}`,
+          icon: "error",
+        });
+      }
+      return;
     },
     async postTypePokemon() {
       var typePokemon = this.selectedType;
