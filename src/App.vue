@@ -1,25 +1,22 @@
 <template>
   <div id="app">
-    <NavComponent/>
-    <router-view/>
-    <FooterComponent/>
-    <MenuComponent/>
+    <router-view />
+    <FooterComponent />
+    <MenuComponent />
   </div>
 </template>
 
 <script>
-import NavComponent from './components/Layout/NavComponent.vue';
-import FooterComponent from './components/Layout/FooterComponent.vue';
-import MenuComponent from './components/Menu/MenuComponent.vue';
+import FooterComponent from "./components/Layout/FooterComponent.vue";
+import MenuComponent from "./components/Menu/MenuComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    NavComponent,
     FooterComponent,
-    MenuComponent
-}
-}
+    MenuComponent,
+  },
+};
 </script>
 
 <style>
@@ -32,9 +29,11 @@ export default {
   color: white;
 }
 
-h1, h2, h3{
+h1,
+h2,
+h3 {
   text-shadow: 2px 0 #0d6efd, -2px 0 #0d6efd, 0 2px #0d6efd, 0 -2px #0d6efd,
-               1px 1px #0d6efd, -1px -1px #0d6efd, 1px -1px #0d6efd, -1px 1px #0d6efd;
+    1px 1px #0d6efd, -1px -1px #0d6efd, 1px -1px #0d6efd, -1px 1px #0d6efd;
   color: yellow !important;
   font-family: monospace;
 }

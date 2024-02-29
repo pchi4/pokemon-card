@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Nav @getPokemons="getPokemons" />
     <div class="container" id="container-home">
       <div class="titulo row">
         <div class="col-12">
@@ -13,42 +14,14 @@
       <div class="p-2">
         <h1 class="fw-bolder">Check your pokemon here!</h1>
       </div>
-      <div v-show="!isGetPokemons">
-        <CardComponente
-          :name="name"
-          :description="description"
-          :url="url"
-          :hp="hp"
-          :ability="ability"
-        />
-      </div>
-      <div class="input-group mb-3 mt-5">
-        <input
-          type="text"
-          class="form-control"
-          v-model="pokemon"
-          placeholder="Enter a pokemon name"
-          aria-label="Enter a pokemon name"
-          aria-describedby="button-addon2"
-        />
-        <button
-          class="btn btn-secondary"
-          type="button"
-          @click.prevent="getPokemons()"
-          id="button-addon2"
-        >
-          Search
-        </button>
-      </div>
+
       <div>
         <div class="alert alert-dark mt-5" role="alert">
           <span
             >If you don't know a name, I recommend you select a few below</span
           >
         </div>
-        <div v-show="isGetPokemons">
-          <img class="w-100" src="/pokemons-group.png" alt="pokemons group" />
-        </div>
+
         <select
           class="form-select my-5"
           v-model="selected"
@@ -65,23 +38,135 @@
             {{ pokemon.name }}
           </option>
         </select>
-      </div>
-      <div class="py-3" v-show="!isGetPokemons">
-        <RoadMap :url="url" :description="description"></RoadMap>
+
+        <!-- grid pokemons -->
+
+        <div>
+          <div class="row" id="group-pokemons" v-if="isGetPokemons">
+            <div
+              class="col-sm-6 col-md-4 p-4"
+              v-for="(item, idx) in pokemonsByPage"
+              :key="idx"
+            >
+              <div
+                id="toggleMyModal"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                @click="getPokemons(item.name)"
+              >
+                <CardPokemons
+                  @getPokemons="getPokemons"
+                  :pokemonsByPage="item"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4" v-else>
+            <CardComponente
+              :name="name"
+              :description="description"
+              :url="url"
+              :hp="hp"
+              :ability="ability"
+            />
+          </div>
+        </div>
+
+        <!-- modal -->
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Details Pokemon
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <CardComponente
+                      :name="name"
+                      :description="description"
+                      :url="url"
+                      :hp="hp"
+                      :ability="ability"
+                    />
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="my-4">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Ullam, fuga quas! Libero molestias possimus asperiores
+                      fugiat praesentium unde, error dolore minus tempore optio
+                      natus rerum ipsam consectetur dicta distinctio? Quisquam?
+                    </div>
+                    <div class="my-4">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Ullam, fuga quas! Libero molestias possimus asperiores
+                      fugiat praesentium unde, error dolore minus tempore optio
+                      natus rerum ipsam consectetur dicta distinctio? Quisquam?
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="d-grid gap-2 d-md-flex justify-content-md-center my-4"
+          v-if="!pokemon"
+        >
+          <button
+            class="btn btn-primary me-md-2"
+            type="button"
+            @click.prevent="previousPage"
+          >
+            Previous
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            @click.prevent="nextPage"
+          >
+            Next
+          </button>
+        </div>
+
+        <div v-show="isGetPokemons">
+          <img class="w-100" src="/pokemons-group.png" alt="pokemons group" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import RoadMap from "./RoadMap.vue";
+// import RoadMap from "./RoadMap.vue";
 import CardComponente from "./CardComponente.vue";
+import Nav from "./../Layout/NavComponent.vue";
+import CardPokemons from "./../Cards/Pokemons";
 
 export default {
   name: "HomeComponent",
   components: {
-    RoadMap,
+    // RoadMap,
     CardComponente,
+    Nav,
+    CardPokemons,
   },
   props: {
     msg: String,
@@ -94,41 +179,51 @@ export default {
       name: "",
       description: undefined,
       hp: undefined,
-      ability: "undefined",
+      ability: null,
       isGetPokemons: true,
       selected: null,
+      pokemonsByPage: [],
+      ofsset: 20,
+      limit: 20,
     };
   },
   methods: {
+    showModal() {
+      var modalToggle = document.getElementById("toggleMyModal");
+      modalToggle.show();
+    },
     async getPokemons(name) {
       var namePokemon = this.pokemon.toLowerCase();
 
-      function pegarOsNomes(nameSelected, nameInput) {
-        if (nameSelected) return name;
-        if (nameInput) return namePokemon;
-      }
+      const pegarOsNomes = (nameSelected, nameInput) => {
+        if (nameInput) {
+          this.isGetPokemons = false;
+          return namePokemon;
+        }
+        if (nameSelected) {
+          this.isGetPokemons = true;
+          return name.toLowerCase();
+        }
+      };
 
       var retornaOsNomes = pegarOsNomes(name, namePokemon);
 
-      try {
-        const req = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${retornaOsNomes}/`
-        );
-        const data = req.json();
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      const req = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${retornaOsNomes}/`
+      );
+      const pokemon = await req.json();
 
-      /*         let sprites, types;
-        ({ sprites, types } = pokemon); */
+      let sprites, types;
+      ({ sprites, types } = pokemon);
 
-      /*       var typeAbility = types[0].type.name;
+      var typeAbility = types[0].type.name;
       this.ability = typeAbility;
+
+      this.pokemonsByPage = [...this.pokemonsByPage, typeAbility];
 
       this.name = pokemon.name[0].toUpperCase() + pokemon.name.substring(1);
       this.url = sprites.other.dream_world.front_default;
-      this.isGetPokemons = false; */
+      this.isGetPokemons = false;
 
       this.getBySpecies(retornaOsNomes);
     },
@@ -136,7 +231,7 @@ export default {
       const req = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${retornaOsNomes}/`
       );
-      const data = req.json();
+      const data = await req.json();
 
       let flavor_text_entries, id;
       ({ flavor_text_entries, id } = data);
@@ -146,7 +241,7 @@ export default {
     },
     async getNatureByName(id) {
       const req = await fetch(`https://pokeapi.co/api/v2/nature/${id}/`);
-      const data = req.json();
+      const data = await req.json();
 
       let move_battle_style_preferences;
       ({ move_battle_style_preferences } = data);
@@ -162,9 +257,72 @@ export default {
       var name = this.selected;
       this.getPokemons(name);
     },
+    async getAllPokemosByPages() {
+      try {
+        const req = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?offset=20&limit=21"
+        );
+        const pokemons = await req.json();
+
+        pokemons.results.forEach(async (element) => {
+          const req = await fetch(element.url);
+          const pokemon = await req.json();
+          this.pokemonsByPage.push({
+            name: element.name[0].toUpperCase() + element.name.substring(1),
+            img: pokemon.sprites.other.dream_world.front_default,
+            ability: pokemon.types[0].type.name,
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async nextPage() {
+      this.ofsset += 20;
+      try {
+        this.pokemonsByPage = [];
+        const reqNextPage = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?offset=${this.ofsset}&limit=21`
+        );
+        const newPage = await reqNextPage.json();
+        newPage.results.forEach(async (element) => {
+          const req = await fetch(element.url);
+          const pokemon = await req.json();
+          this.pokemonsByPage.push({
+            name: element.name[0].toUpperCase() + element.name.substring(1),
+            img: pokemon.sprites.other.dream_world.front_default,
+            ability: pokemon.types[0].type.name,
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async previousPage() {
+      this.ofsset -= 20;
+      try {
+        this.pokemonsByPage = [];
+        const reqPreviousPage = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?offset=${this.ofsset}&limit=21`
+        );
+        const oldPage = await reqPreviousPage.json();
+        oldPage.results.forEach(async (element) => {
+          const req = await fetch(element.url);
+          const pokemon = await req.json();
+          this.pokemonsByPage.push({
+            name: element.name[0].toUpperCase() + element.name.substring(1),
+            img: pokemon.sprites.other.dream_world.front_default,
+            ability: pokemon.types[0].type.name,
+          });
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   mounted() {
     this.getListPokemon();
+    this.getAllPokemosByPages();
   },
 };
 </script>
@@ -188,17 +346,6 @@ export default {
   background-color: rgba(255, 228, 196, 0.589);
   margin: 10px;
   border-radius: 0px 0px 10px 10px;
-}
-
-.header-titulos {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: blue;
-  margin: 10px;
-  color: white;
-  font-weight: bolder;
-  border-radius: 10px 10px 0px 0px;
 }
 
 #hp {
