@@ -8,8 +8,10 @@
         <img class="w-50" w :src="pokemonsByPage.img" alt="pokemons group" />
       </div>
 
-      <div class="header-titulos">
-        <h5>{{ pokemonsByPage.name }}</h5>
+      <div class="mt-4">
+        <div class="header-titulos">
+          <h5>{{ pokemonsByPage.name }}</h5>
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +26,16 @@ export default {
   emits: ["getPokemons"],
 };
 </script>
-<style>
+<style scoped>
+.card {
+  max-width: 300px;
+  display: flex;
+  justify-content: end;
+  height: 300px;
+  background-color: rgb(226, 226, 61);
+  margin: 0 auto !important;
+}
+
 .header-titulos {
   padding: 6px;
   background-color: blue;

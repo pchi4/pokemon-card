@@ -47,6 +47,7 @@ export default {
 <style scoped>
 .card {
   max-width: 300px;
+  height: 250px;
   background-color: rgb(226, 226, 61);
   margin: 0 auto !important;
 }

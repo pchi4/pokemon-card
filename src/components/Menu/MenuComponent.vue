@@ -23,7 +23,7 @@
         <nav>
           <span
             ><router-link class="btn btn-primary w-100 fw-bolder m-2" to="/"
-              ><font-awesome-icon icon="fa-solid fa-house" /> Home
+              ><font-awesome-icon icon="fa-solid fa-house" /> Search pokemons
             </router-link></span
           >
           <span

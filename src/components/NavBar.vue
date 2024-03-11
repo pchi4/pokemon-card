@@ -1,29 +1,30 @@
 <template>
   <nav class="bg-dark">
     <div class="row">
-      <div class="col-8">
-        <div class="d-flex justify-content-start">
-          <button
-            class="btn btn-primary m-4"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling"
-          >
-            <font-awesome-icon icon="fa-solid fa-bars" />
-          </button>
-          <div class="mx-10 mt-2">
-            <img
-              src="/pokemon-titulo.png"
-              width="200"
-              alt="pokemon titusdasdlo"
-            />
+      <div class="col-12 p-2">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <button
+              class="btn btn-primary m-4"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasScrolling"
+              aria-controls="offcanvasScrolling"
+            >
+              <font-awesome-icon icon="fa-solid fa-bars" />
+            </button>
+            <div
+              class="mx-10 mt-2 d-none d-md-block d-lg-block"
+              @click="retloadPage"
+            >
+              <img
+                src="/pokemon-titulo.png"
+                width="200"
+                alt="pokemon titusdasdlo"
+              />
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="d-flex justify-content-end">
-          <div class="input-group mb-3 mt-5 mx-4">
+          <div class="d-flex h-25 m-4">
             <input
               type="text"
               class="form-control"
@@ -58,6 +59,9 @@ export default {
   methods: {
     executeEmit() {
       this.$emit("getPokemons", this.pokemon);
+    },
+    retloadPage() {
+      window.location.reload();
     },
   },
 };

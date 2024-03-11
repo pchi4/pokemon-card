@@ -31,9 +31,9 @@
         >
           <option selected>Select one pokémon</option>
           <option
-            v-for="pokemon in pokemons"
+            v-for="(pokemon, idx) in pokemons"
             :value="pokemon.name"
-            :key="pokemon.name"
+            :key="idx"
           >
             {{ pokemon.name }}
           </option>
@@ -63,7 +63,7 @@
           </div>
 
           <div class="mb-4" v-else>
-            <CardComponente
+            <CardInfo
               :name="name"
               :description="description"
               :url="url"
@@ -82,8 +82,8 @@
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-secondary">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
                   Details Pokemon
@@ -98,7 +98,7 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-12 col-md-6">
-                    <CardComponente
+                    <CardInfo
                       :name="name"
                       :description="description"
                       :url="url"
@@ -128,7 +128,7 @@
 
         <div
           class="d-grid gap-2 d-md-flex justify-content-md-center my-4"
-          v-if="!pokemon"
+          v-if="!isValue"
         >
           <button
             class="btn btn-primary me-md-2"
@@ -155,17 +155,15 @@
 </template>
 
 <script>
-// import RoadMap from "./RoadMap.vue";
-import CardComponente from "./CardComponente.vue";
-import Nav from "./../Layout/NavComponent.vue";
-import CardPokemons from "./../Cards/Pokemons";
+import Nav from "./../../components/NavBar.vue";
+import CardPokemons from "./../../components/Cards/Pokemons";
+import CardInfo from "./../../components/Cards/Information";
 
 export default {
   name: "HomeComponent",
   components: {
-    // RoadMap,
-    CardComponente,
     Nav,
+    CardInfo,
     CardPokemons,
   },
   props: {
@@ -185,6 +183,7 @@ export default {
       pokemonsByPage: [],
       ofsset: 20,
       limit: 20,
+      isValue: null,
     };
   },
   methods: {
@@ -194,6 +193,7 @@ export default {
     },
     async getPokemons(name) {
       var namePokemon = this.pokemon.toLowerCase();
+      this.isValue = name;
 
       const pegarOsNomes = (nameSelected, nameInput) => {
         if (nameInput) {
@@ -328,12 +328,6 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  max-width: 300px;
-  background-color: rgb(226, 226, 61);
-  margin: 0 auto !important;
-}
-
 #titulo {
   font-weight: bolder;
 }

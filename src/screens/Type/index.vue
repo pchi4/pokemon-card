@@ -35,10 +35,7 @@
         </select>
       </div>
       <div>
-        <LoadingComponent
-          :class="['loadding', loadding]"
-          v-if="loadding == true"
-        />
+        <Loading :class="['loadding', loadding]" v-if="loadding == true" />
       </div>
       <div v-show="isGetPokemonsTypes">
         <CardType :abilitys="abilitys" :pokemons="pokemons" />
@@ -48,16 +45,16 @@
 </template>
 
 <script>
-import CardType from "./CardType.vue";
-import LoadingComponent from "./LoadingComponent.vue";
-import Nav from "./../Layout/NavComponent.vue";
 import Swal from "sweetalert2";
+import CardType from "./../../components/Cards/Types";
+import Loading from "./../../components/Loadding.vue";
+import Nav from "./../../components/NavBar.vue";
 
 export default {
   name: "TypePokemonCards",
   components: {
     CardType,
-    LoadingComponent,
+    Loading,
     Nav,
   },
   data() {

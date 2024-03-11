@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <router-view />
-    <FooterComponent />
     <MenuComponent />
+    <FooterComponent />
   </div>
 </template>
 
 <script>
-import FooterComponent from "./components/Layout/FooterComponent.vue";
+import FooterComponent from "./components/Footer.vue";
 import MenuComponent from "./components/Menu/MenuComponent.vue";
 
 export default {
